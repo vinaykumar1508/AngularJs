@@ -1,0 +1,14 @@
+export class Ingredient{
+  /*
+     Below working code is same as the commented out code. 
+    public name: string;
+    public amount: number;
+
+    constructor(name: string, amount: number){
+        this.name=name;
+        this.amount=amount;
+    } 
+    */
+    constructor(public name: string, public amount: number){}
+
+}
