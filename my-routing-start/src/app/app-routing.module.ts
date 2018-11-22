@@ -1,3 +1,5 @@
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { CanDeactivateGaurd } from './servers/edit-server/can-deactivate-gaurd.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,12 +19,18 @@ const appRoutes: Routes = [
     { path: 'users', component: UsersComponent, children:[
       {  path: ':id/:name', component: UserComponent }
     ]},
-    { path: 'servers', canActivate:[AuthGaurd], component: ServersComponent , children:[
-        { path: ':id', component: ServerComponent },
-        { path: ':id/edit', component: EditServerComponent }
-      ]
+    { 
+        path: 'servers', 
+       // canActivate:[AuthGaurd], 
+        canActivateChild:[AuthGaurd],   
+        component: ServersComponent, 
+        children:[
+            { path: ':id', component: ServerComponent },
+            { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGaurd] }
+        ]
     },
-    { path: 'not-found', component: PageNotFoundComponent },
+    //{ path: 'not-found', component: PageNotFoundComponent },
+    { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found'} },
     { path: '**', redirectTo: '/not-found' }  
 ];
 

@@ -1,10 +1,11 @@
+import { CanDeactivateGaurd } from './servers/edit-server/can-deactivate-gaurd.service';
 import { AuthGaurd } from 'src/app/auth-gaurd.service';
 import { AuthService } from './auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanDeactivate } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +17,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
@@ -28,7 +30,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ServersService,AuthService,AuthGaurd],
+  providers: [ServersService,AuthService,AuthGaurd, CanDeactivateGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
