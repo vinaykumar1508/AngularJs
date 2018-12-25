@@ -16,6 +16,12 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { HttpModule } from '@angular/http';
+import { SingupComponent } from './auth/singup/singup.component';
+import { SinginComponent } from './auth/singin/singin.component';
+import { AuthService } from 'src/app/auth/auth.service';
+import { AuthGaurd } from 'src/app/auth/auth-gaurd.service';
 
 
 @NgModule({
@@ -30,15 +36,18 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SingupComponent,
+    SinginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
