@@ -30,6 +30,17 @@ export class AuthService {
                 error => console.log(error)
             );
     }
+    logOut(){
+        firebase.auth().signOut()
+            .then(
+                (response: void) => {
+                    console.log(response);
+                    this.router.navigate(['/']);
+                    this.token= null;
+                }
+            )
+        
+    }
 
     getToken(){
         firebase.auth().currentUser.getIdToken()
@@ -42,9 +53,12 @@ export class AuthService {
     isAuthenticated(){
         return this.token!= null;
     }
-
+    /*
     logOut(){
         firebase.auth().signOut();
         this.token= null;
     }
+    */
+
+    
 }
